@@ -3,21 +3,37 @@ package com.cxz.wanandroid.ui.activity
 import android.content.Intent
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
-import com.cxz.wanandroid.R
-import com.cxz.wanandroid.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_splash.*
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.constraintlayout.compose.ConstraintLayout
+import com.cxz.wanandroid.base.BaseComposeActivity
+//import kotlinx.android.synthetic.main.activity_splash.*
 
-class SplashActivity : BaseActivity() {
+class SplashActivity : BaseComposeActivity() {
 
     private var alphaAnimation: AlphaAnimation? = null
 
-    override fun attachLayoutRes(): Int = R.layout.activity_splash
+//    override fun attachLayoutRes(): Int = R.layout.activity_splash
 
     override fun useEventBus(): Boolean = false
 
     override fun enableNetworkTip(): Boolean = false
 
     override fun initData() {
+    }
+
+    @Composable
+    override fun ComposeContentView() {
+        ConstraintLayout(modifier = Modifier.fillMaxSize()) {
+            Text("HelloWorld", Modifier.constrainAs(createRef()) {
+                start.linkTo(parent.start)
+                top.linkTo(parent.top)
+                end.linkTo(parent.end)
+                bottom.linkTo(parent.bottom)
+            })
+        }
     }
 
     override fun initView() {
@@ -29,19 +45,19 @@ class SplashActivity : BaseActivity() {
                 }
 
                 override fun onAnimationEnd(p0: Animation?) {
-                    jumpToMain()
+//                    jumpToMain()
                 }
 
                 override fun onAnimationStart(p0: Animation?) {
                 }
             })
         }
-        layout_splash.startAnimation(alphaAnimation)
+//        layout_splash.startAnimation(alphaAnimation)
     }
 
     override fun initColor() {
         super.initColor()
-        layout_splash.setBackgroundColor(mThemeColor)
+//        layout_splash.setBackgroundColor(mThemeColor)
     }
 
     override fun start() {

@@ -6,7 +6,6 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
         applicationId "com.cxz.wanandroid"
@@ -43,6 +42,10 @@ android {
         }
     }
 
+    buildFeatures {
+        compose true
+    }
+
     buildTypes {
         release {
             minifyEnabled true
@@ -71,6 +74,14 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion "1.0.5"
+    }
 }
 
 static def releaseTime() {
@@ -98,8 +109,12 @@ dependencies {
     // RxJava2
     implementation rootProject.ext.rxJavaLibs
     implementation rootProject.ext.commonLibs
+
+    implementation rootProject.ext.composeLibs
+    
     // APT dependencies(Kotlin内置的注解处理器)
     kapt rootProject.ext.annotationProcessorLibs
+
 
     implementation kotlinDeps.kotlin_stdlib
 
