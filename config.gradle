@@ -1,4 +1,12 @@
 ext {
+
+    addRepos = { RepositoryHandler handler ->
+        handler.google()
+        handler.mavenCentral()
+        handler.maven { url "https://jitpack.io" }
+        handler.jcenter()
+    }
+
     android = [
             compileSdkVersion: 30,
             buildToolsVersion: "30.0.3",
@@ -9,7 +17,6 @@ ext {
     ]
 
     dependVersion = [
-            // supportSdkVersion: "28.0.0",
             retrofit : "2.4.0",
             glide    : "4.12.0",
             rxJava   : "2.2.2",
@@ -25,16 +32,6 @@ ext {
             "androidx-core"   : 'androidx.core:core-ktx:1.3.2',
             "recyclerview"    : "androidx.recyclerview:recyclerview:1.2.1",
     ]
-
-//    supportDeps = [
-//            "supportv4"        : "com.android.support:support-v4:${dependVersion.supportSdkVersion}",
-//            "appcompatv7"      : "com.android.support:appcompat-v7:${dependVersion.supportSdkVersion}",
-//            "cardview"         : "com.android.support:cardview-v7:${dependVersion.supportSdkVersion}",
-//            "design"           : "com.android.support:design:${dependVersion.supportSdkVersion}",
-//            "constraint-layout": "com.android.support.constraint:constraint-layout:1.1.3",
-//            "annotations"      : "com.android.support:support-annotations:${dependVersion.supportSdkVersion}",
-//            "vector-drawable"  : "com.android.support:support-vector-drawable:${dependVersion.supportSdkVersion}"
-//    ]
 
     retrofit = [
             "retrofit"                : "com.squareup.retrofit2:retrofit:${dependVersion.retrofit}",
@@ -83,14 +80,54 @@ ext {
             "fab"                   : 'com.github.clans:fab:1.6.4',
             "materialdatetimepicker": 'com.wdullaer:materialdatetimepicker:3.6.4',
             "android-autosize"      : 'me.jessyan:autosize:1.2.1',
-            "spinkit"               : 'com.github.ybq:Android-SpinKit:1.4.0'
+            "spinkit"               : 'com.github.ybq:Android-SpinKit:1.4.0',
+
+
+
     ]
 
     annotationProcessorDeps = [
             "glide-compiler": "com.github.bumptech.glide:compiler:${dependVersion.glide}"
     ]
 
-    // supportLibs = supportDeps.values()
+    composeDeps = [
+            "ui"                     : "androidx.compose.ui:ui:1.0.5",
+            // Tooling support (Previews, etc.)
+            "ui-tooling"             : "androidx.compose.ui:ui-tooling:1.0.5",
+
+            // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
+            "foundation"             : "androidx.compose.foundation:foundation:1.0.5",
+
+            // Material Design
+            "material"               : "androidx.compose.material:material:1.0.5",
+            // Material design icons
+            "material-icons-core"    : "androidx.compose.material:material-icons-core:1.0.5",
+            "material-icons-extended": "androidx.compose.material:material-icons-extended:1.0.5",
+
+            // Integration with activities
+            "activity"               : "androidx.activity:activity-compose:ui:1.3.1",
+
+            // Integration with ViewModels
+            "lifecycle-viewmodel"    : "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07",
+
+            // Integration with observables
+            "runtime-livedata"       : "androidx.compose.runtime:runtime-livedata:1.0.5",
+            "runtime-rxjava2"        : "androidx.compose.runtime:runtime-rxjava2:1.0.5",
+
+
+            // UI Tests
+            "ui-test-junit4"         : "androidx.compose.ui:ui-test-jnit4:1.0.5",
+    ]
+
+    buildClasspath = [
+            android_build: "com.android.tools.build:gradle:7.1.0",
+            kotlin_gradle: "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
+    ]
+
+    kotlinDeps  = [
+            kotlin_stdlib        : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.10"
+    ]
+    
     androisxLibs = androidxDeps.values()
     networkLibs = retrofit.values()
     rxJavaLibs = rxJava.values()
