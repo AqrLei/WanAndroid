@@ -10,6 +10,9 @@
         <!--关闭启动窗口-->
         <item name="android:windowDisablePreview">true</item>
         <item name="android:listDivider">@drawable/bg_divider</item>
+
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
     <style name="AppTheme" parent="BaseAppTheme.NoActionBar"></style>
@@ -24,6 +27,8 @@
     </style>
 
     <style name="SplashTheme" parent="BaseAppTheme.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowFullscreen">true</item>
     </style>
 
