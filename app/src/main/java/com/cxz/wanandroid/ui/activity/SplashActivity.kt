@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.cxz.wanandroid.R
 import com.cxz.wanandroid.base.BaseComposeActivity
-import com.cxz.wanandroid.base.ui.page.WanAndroidHome
+import com.cxz.wanandroid.base.ui.page.home.WanAndroidHome
 import com.cxz.wanandroid.base.ui.theme.ColorPrimary
 import com.cxz.wanandroid.data.ArticleModel
 import kotlinx.coroutines.delay

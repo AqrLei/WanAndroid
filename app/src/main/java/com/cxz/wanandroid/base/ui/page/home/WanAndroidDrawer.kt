@@ -1,9 +1,8 @@
-package com.cxz.wanandroid.base.ui.page
+package com.cxz.wanandroid.base.ui.page.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -15,13 +14,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
-import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,68 +29,10 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.cxz.wanandroid.R
 import com.cxz.wanandroid.base.ui.theme.ColorPrimary
-import com.cxz.wanandroid.ui.activity.OnArticleItemClicked
-import com.google.accompanist.insets.statusBarsPadding
-import kotlinx.coroutines.launch
 
 /**
  * created by AqrLei on 2022/2/11
  */
-enum class WanAndroidScreen {
-    Home, Square, Wechat, System, Project
-
-}
-
-@Composable
-fun WanAndroidHome(
-    onArticleItemClicked: OnArticleItemClicked,
-    modifier: Modifier = Modifier
-) {
-    val scaffoldState = rememberScaffoldState()
-    val scope = rememberCoroutineScope()
-    Scaffold(
-        scaffoldState = scaffoldState,
-        modifier = Modifier.statusBarsPadding(),
-        drawerContent = {
-            WanAndroidDrawer()
-        },
-        topBar = {
-            TopAppBar(
-                title = { Text(stringResource(id = R.string.app_name)) },
-                navigationIcon = {
-                    Image(
-                        modifier = Modifier
-                            .padding(top = 8.dp)
-                            .clickable(onClick = {
-                                scope.launch {
-                                    scaffoldState.drawerState.open()
-                                }
-                            }),
-                        painter = painterResource(id = R.drawable.ic_menu),
-                        contentDescription = "open drawer"
-                    )
-                },
-                actions = {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_search_white_24dp),
-                        contentDescription = "search"
-                    )
-                }
-            )
-        }
-    ) {
-        
-    }
-}
-
-@Composable
-fun WanAndroidHomeContent(
-    onArticleItemClicked: OnArticleItemClicked,
-    openDrawer: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-
-}
 
 @Composable
 fun WanAndroidDrawer(modifier: Modifier = Modifier) {

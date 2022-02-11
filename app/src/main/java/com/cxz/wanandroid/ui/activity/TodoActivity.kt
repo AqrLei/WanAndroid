@@ -143,7 +143,7 @@ class TodoActivity : BaseSwipeBackActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menu?.clear()
         menuInflater.inflate(R.menu.menu_todo, menu)
         return super.onCreateOptionsMenu(menu)

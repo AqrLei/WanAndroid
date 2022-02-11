@@ -146,7 +146,7 @@ class ContentActivity : BaseMvpSwipeBackActivity<ContentContract.View, ContentCo
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_content, menu)
         return super.onCreateOptionsMenu(menu)
     }

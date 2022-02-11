@@ -138,7 +138,7 @@ class ScoreActivity : BaseMvpSwipeBackActivity<ScoreContract.View, ScoreContract
         mPresenter?.getUserScoreList(pageNum)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menu?.clear()
         menuInflater.inflate(R.menu.menu_score, menu)
         return super.onCreateOptionsMenu(menu)

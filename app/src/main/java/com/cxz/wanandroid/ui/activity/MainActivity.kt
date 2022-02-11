@@ -524,7 +524,7 @@ class MainActivity : BaseMvpActivity<MainContract.View, MainContract.Presenter>(
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         if (mIndex != FRAGMENT_SQUARE) {
             menuInflater.inflate(R.menu.menu_activity_main, menu)
         }
