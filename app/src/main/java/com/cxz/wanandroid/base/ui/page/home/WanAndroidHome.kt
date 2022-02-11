@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.FabPosition
+import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -46,7 +48,9 @@ sealed class WanAndroidScreen(
     object Home : WanAndroidScreen("home", R.string.home, R.drawable.ic_home_black_24dp)
     object Square : WanAndroidScreen("square", R.string.square, R.drawable.ic_square_black_24dp)
     object Wechat : WanAndroidScreen("wechat", R.string.wechat, R.drawable.ic_wechat_black_24dp)
-    object System : WanAndroidScreen("system", R.string.knowledge_system, R.drawable.ic_apps_black_24dp)
+    object System :
+        WanAndroidScreen("system", R.string.knowledge_system, R.drawable.ic_apps_black_24dp)
+
     object Project : WanAndroidScreen("project", R.string.project, R.drawable.ic_project_black_24dp)
 }
 
@@ -133,7 +137,18 @@ fun WanAndroidHomeContent(
                 }
                 Spacer(modifier = modifier.navigationBarsHeight())
             }
-        }
+        },
+        floatingActionButton = {
+            FloatingActionButton(onClick = {
+
+            }) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_arrow_upward_white_24dp),
+                    contentDescription = "floating"
+                )
+            }
+        },
+        floatingActionButtonPosition = FabPosition.End,
     ) { innerPadding ->
         NavHost(
             navController = navController,
