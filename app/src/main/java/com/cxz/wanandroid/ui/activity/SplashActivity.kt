@@ -1,71 +1,127 @@
 package com.cxz.wanandroid.ui.activity
 
-import android.content.Intent
-import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.MutableTransitionState
+import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.constraintlayout.compose.Dimension
 import com.cxz.wanandroid.R
 import com.cxz.wanandroid.base.BaseComposeActivity
+import com.cxz.wanandroid.base.ui.page.WanAndroidHome
 import com.cxz.wanandroid.base.ui.theme.ColorPrimary
+import com.cxz.wanandroid.data.ArticleModel
+import kotlinx.coroutines.delay
 
 class SplashActivity : BaseComposeActivity() {
 
     @Composable
     override fun ComposeContentView() {
+        MainScreen(onArticleItemClicked = {})
+    }
+}
 
-        var alphaState by remember { mutableStateOf(false) }
+typealias OnArticleItemClicked = (article: ArticleModel) -> Unit
 
-        val alpha by animateFloatAsState(
-            targetValue = if (alphaState) 1F else 0.3F,
-            animationSpec = tween(durationMillis = 2000),
-            finishedListener = { jumpToMain() })
+@Composable
+fun MainScreen(onArticleItemClicked: OnArticleItemClicked) {
+    Surface(color = ColorPrimary) {
+        val transitionState = remember { MutableTransitionState(SplashState.Shown) }
+        val transition = updateTransition(targetState = transitionState, label = "splashTransition")
 
-        LaunchedEffect(null) {
-            alphaState = true
+        val splashAlpha by transition.animateFloat(
+            transitionSpec = { tween(durationMillis = 2000) }, label = "splashAlpha"
+        ) {
+            when (it.targetState) {
+                SplashState.Shown -> 0.3F
+                SplashState.OnSplashed -> 1.0f
+                SplashState.Completed -> 0F
+            }
         }
 
-        ConstraintLayout(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(alpha = alpha, brush = SolidColor(ColorPrimary))
+        val contentAlpha by transition.animateFloat(
+            transitionSpec = { tween(300) },
+            label = "contentAlpha"
         ) {
-            Image(
-                painter = painterResource(id = R.mipmap.logo), contentDescription = "logo",
-                Modifier
-                    .constrainAs(createRef()) {
-                        width = Dimension.value(110.dp)
-                        height = Dimension.value(110.dp)
-                        start.linkTo(parent.start)
-                        top.linkTo(parent.top)
-                        end.linkTo(parent.end)
-                        bottom.linkTo(parent.bottom)
-                    }
-                    .border(width = 2.dp, brush = SolidColor(Color.White), shape = CircleShape)
+            when (it.targetState) {
+                SplashState.Shown,
+                SplashState.OnSplashed -> 0F
+                SplashState.Completed -> 1F
+            }
+        }
+
+        Box {
+            LandingScreen(
+                modifier = Modifier
+                    .background(alpha = splashAlpha, brush = SolidColor(ColorPrimary))
+                    .alpha(splashAlpha),
+                onSplash = { transitionState.targetState = SplashState.OnSplashed },
+                onComplete = { transitionState.targetState = SplashState.Completed }
+            )
+
+            MainContent(
+                modifier = Modifier.alpha(contentAlpha),
+                onArticleItemClicked = onArticleItemClicked
             )
         }
     }
+}
 
-    private fun jumpToMain() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+private const val SplashWaitTime: Long = 2000
+
+@Composable
+fun LandingScreen(modifier: Modifier = Modifier, onSplash: () -> Unit, onComplete: () -> Unit) {
+    Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        val currentOnSplash by rememberUpdatedState(onSplash)
+        val currentOnComplete by rememberUpdatedState(onComplete)
+        LaunchedEffect(Unit) {
+            currentOnSplash()
+            delay(SplashWaitTime)
+            currentOnComplete()
+        }
+        Image(
+            painter = painterResource(id = R.mipmap.logo), contentDescription = "logo",
+            Modifier
+                .size(110.dp)
+                .clip(CircleShape)
+                .border(width = 2.dp, brush = SolidColor(Color.White), shape = CircleShape)
+        )
     }
 }
+
+@Composable
+private fun MainContent(
+    modifier: Modifier = Modifier,
+    topPadding: Dp = 0.dp,
+    onArticleItemClicked: OnArticleItemClicked
+) {
+    Column(modifier = modifier) {
+        Spacer(modifier = Modifier.padding(top = topPadding))
+        WanAndroidHome(onArticleItemClicked = onArticleItemClicked, modifier = modifier)
+    }
+}
+
+enum class SplashState { Shown, OnSplashed, Completed }

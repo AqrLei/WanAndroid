@@ -7,22 +7,81 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 // Set of Material typography styles to start with
+
+
+private val wanAndroidFontFamily = FontFamily.Default
+
+
+val captionTextStyle = TextStyle(
+    fontFamily = wanAndroidFontFamily,
+    fontWeight = FontWeight.Normal,
+    fontSize = 16.sp
+)
+
 val Typography = Typography(
-    body1 = TextStyle(
-        fontFamily = FontFamily.Default,
+    h1 = TextStyle(
+        fontFamily = wanAndroidFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 96.sp
+    ),
+    h2 = TextStyle(
+        fontFamily = wanAndroidFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 60.sp
+    ),
+    h3 = TextStyle(
+        fontFamily = wanAndroidFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 48.sp
+    ),
+    h4 = TextStyle(
+        fontFamily = wanAndroidFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 34.sp
+    ),
+    h5 = TextStyle(
+        fontFamily = wanAndroidFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 24.sp
+    ),
+    h6 = TextStyle(
+        fontFamily = wanAndroidFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 20.sp
+    ),
+    subtitle1 = TextStyle(
+        fontFamily = wanAndroidFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
-    )
-    /* Other default text styles to override
+    ),
+    subtitle2 = TextStyle(
+        fontFamily = wanAndroidFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp
+    ),
+    body1 = TextStyle(
+        fontFamily = wanAndroidFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp
+    ),
+    body2 = TextStyle(
+        fontFamily = wanAndroidFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp
+    ),
     button = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.W500,
+        fontFamily = wanAndroidFontFamily,
+        fontWeight = FontWeight.Normal,
         fontSize = 14.sp
     ),
     caption = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = wanAndroidFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp
+    ),
+    overline = TextStyle(
+        fontFamily = wanAndroidFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp
     )
-    */
 )
