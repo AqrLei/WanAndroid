@@ -1,5 +1,6 @@
 package com.cxz.wanandroid
 
+import android.util.Log
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -12,6 +13,14 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+        println("test-floor: ${(-1).div(10)}")
+        println("test-floor: ${(-1)/(10)}")
+        println("test-floor: ${(-1).floorDiv(10)}")
+        println("test-floor: ${(-1).floorMod(10)}")
+    }
+
+    private fun Int.floorMod(other: Int): Int = when (other) {
+        0 -> this
+        else -> this - floorDiv(other) * other
     }
 }

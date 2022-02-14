@@ -157,31 +157,31 @@ fun WanAndroidHomeContent(
         ) {
             composable(WanAndroidScreen.Home.route) {
                 WanAndroidHomeContentItem(
-                    "",
+                    WanAndroidScreen.Home,
                     onArticleItemClicked
                 )
             }
             composable(WanAndroidScreen.Square.route) {
                 WanAndroidHomeContentItem(
-                    "",
+                    WanAndroidScreen.Square,
                     onArticleItemClicked
                 )
             }
             composable(WanAndroidScreen.Wechat.route) {
                 WanAndroidHomeContentItem(
-                    "",
+                    WanAndroidScreen.Wechat,
                     onArticleItemClicked
                 )
             }
             composable(WanAndroidScreen.System.route) {
                 WanAndroidHomeContentItem(
-                    "",
+                    WanAndroidScreen.System,
                     onArticleItemClicked
                 )
             }
             composable(WanAndroidScreen.Project.route) {
                 WanAndroidHomeContentItem(
-                    "",
+                    WanAndroidScreen.Project,
                     onArticleItemClicked
                 )
             }
@@ -190,6 +190,15 @@ fun WanAndroidHomeContent(
 }
 
 @Composable
-fun WanAndroidHomeContentItem(route: String, onArticleItemClicked: OnArticleItemClicked) {
-
+fun WanAndroidHomeContentItem(
+    screen: WanAndroidScreen,
+    onArticleItemClicked: OnArticleItemClicked
+) {
+    when (screen) {
+        WanAndroidScreen.Home -> {}
+        WanAndroidScreen.Project -> {}
+        WanAndroidScreen.Square ->{}
+        WanAndroidScreen.System -> {}
+        WanAndroidScreen.Wechat -> {}
+    }
 }
