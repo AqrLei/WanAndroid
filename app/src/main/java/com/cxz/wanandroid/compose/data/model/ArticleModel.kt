@@ -1,4 +1,4 @@
-package com.cxz.wanandroid.data
+package com.cxz.wanandroid.compose.data.model
 
 import androidx.compose.runtime.Immutable
 

@@ -1,4 +1,4 @@
-package com.cxz.wanandroid.base.ui.widget
+package com.cxz.wanandroid.compose.ui.widget
 
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.animateContentSize

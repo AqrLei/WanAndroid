@@ -1,4 +1,4 @@
-package com.cxz.wanandroid.base.ui.page.home
+package com.cxz.wanandroid.compose.ui.page.home
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -31,7 +31,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.cxz.wanandroid.R
-import com.cxz.wanandroid.base.ui.theme.ColorPrimary
+import com.cxz.wanandroid.compose.ui.theme.ColorPrimary
 import com.cxz.wanandroid.ui.activity.OnArticleItemClicked
 import com.google.accompanist.insets.navigationBarsHeight
 import com.google.accompanist.insets.statusBarsPadding

@@ -1,4 +1,4 @@
-package com.cxz.wanandroid.base.ui.page.home
+package com.cxz.wanandroid.compose.ui.page.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -28,7 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.cxz.wanandroid.R
-import com.cxz.wanandroid.base.ui.theme.ColorPrimary
+import com.cxz.wanandroid.compose.ui.theme.ColorPrimary
 
 /**
  * created by AqrLei on 2022/2/11

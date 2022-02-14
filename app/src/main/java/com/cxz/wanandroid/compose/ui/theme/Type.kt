@@ -1,4 +1,4 @@
-package com.cxz.wanandroid.base.ui.theme
+package com.cxz.wanandroid.compose.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
