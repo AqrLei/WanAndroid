@@ -201,12 +201,11 @@ fun WanAndroidHomeContentItem(
     screen: WanAndroidScreen,
     onArticleItemClicked: OnArticleItemClicked
 ) {
-    RecommendPage()
-//    when (screen) {
-//        WanAndroidScreen.Home -> {}
-//        WanAndroidScreen.Project -> {}
-//        WanAndroidScreen.Square ->{}
-//        WanAndroidScreen.System -> {}
-//        WanAndroidScreen.Wechat -> {}
-//    }
+    when (screen) {
+        WanAndroidScreen.Home -> RecommendPage()
+        WanAndroidScreen.Project -> {}
+        WanAndroidScreen.Square ->{}
+        WanAndroidScreen.System -> {}
+        WanAndroidScreen.Wechat -> {}
+    }
 }

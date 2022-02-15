@@ -23,7 +23,6 @@ fun RecommendPage(
     viewModel: RecommendViewModel = viewModel()
 ) {
 
-
     val bannerList by remember { viewModel.imageList }
     val refreshing by remember { viewModel.refreshing }
 
