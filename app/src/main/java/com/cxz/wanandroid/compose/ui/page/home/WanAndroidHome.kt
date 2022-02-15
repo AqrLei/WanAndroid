@@ -30,11 +30,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import coil.annotation.ExperimentalCoilApi
 import com.cxz.wanandroid.R
+import com.cxz.wanandroid.compose.ui.page.home.recommend.RecommendPage
 import com.cxz.wanandroid.compose.ui.theme.ColorPrimary
-import com.cxz.wanandroid.ui.activity.OnArticleItemClicked
+import com.cxz.wanandroid.compose.ui.OnArticleItemClicked
 import com.google.accompanist.insets.navigationBarsHeight
 import com.google.accompanist.insets.statusBarsPadding
+import com.google.accompanist.pager.ExperimentalPagerApi
 import kotlinx.coroutines.launch
 
 /**
@@ -54,6 +57,8 @@ sealed class WanAndroidScreen(
     object Project : WanAndroidScreen("project", R.string.project, R.drawable.ic_project_black_24dp)
 }
 
+@ExperimentalCoilApi
+@ExperimentalPagerApi
 @Composable
 fun WanAndroidHome(
     onArticleItemClicked: OnArticleItemClicked,
@@ -96,7 +101,8 @@ fun WanAndroidHome(
         }
     )
 }
-
+@ExperimentalCoilApi
+@ExperimentalPagerApi
 @Composable
 fun WanAndroidHomeContent(
     onArticleItemClicked: OnArticleItemClicked,
@@ -188,17 +194,19 @@ fun WanAndroidHomeContent(
         }
     }
 }
-
+@ExperimentalCoilApi
+@ExperimentalPagerApi
 @Composable
 fun WanAndroidHomeContentItem(
     screen: WanAndroidScreen,
     onArticleItemClicked: OnArticleItemClicked
 ) {
-    when (screen) {
-        WanAndroidScreen.Home -> {}
-        WanAndroidScreen.Project -> {}
-        WanAndroidScreen.Square ->{}
-        WanAndroidScreen.System -> {}
-        WanAndroidScreen.Wechat -> {}
-    }
+    RecommendPage()
+//    when (screen) {
+//        WanAndroidScreen.Home -> {}
+//        WanAndroidScreen.Project -> {}
+//        WanAndroidScreen.Square ->{}
+//        WanAndroidScreen.System -> {}
+//        WanAndroidScreen.Wechat -> {}
+//    }
 }

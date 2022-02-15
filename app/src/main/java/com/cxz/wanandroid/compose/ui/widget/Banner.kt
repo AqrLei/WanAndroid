@@ -55,14 +55,16 @@ data class BannerData(
     val imageUrl: String
 )
 
+private const val MAX_VALUE = 500
+
 @ExperimentalCoilApi
 @ExperimentalPagerApi
 @Composable
 fun Banner(
     list: List<BannerData>?,
-    timeMillis: Long = 2000,
+    timeMillis: Long = 3000,
     @DrawableRes loadImage: Int = R.drawable.no_banner,
-    indicatorAlignment: Alignment = Alignment.BottomEnd,
+    indicatorAlignment: Alignment = Alignment.BottomCenter,
     onClick: (link: String, title: String) -> Unit
 ) {
 
@@ -74,21 +76,21 @@ fun Banner(
     ) {
         list?.takeIf { it.isNotEmpty() }?.let { bannerList ->
             val pageCount = bannerList.size
-            val startIndex = Int.MAX_VALUE / 2
+            val startIndex = MAX_VALUE / 2
             val pagerState = rememberPagerState(initialPage = startIndex)
 
             var executeChangePage by remember { mutableStateOf(false) }
             var currentPageIndex = startIndex
 
-            LaunchedEffect(pagerState.currentPage) {
+            LaunchedEffect(pagerState.currentPage, executeChangePage) {
                 if (pagerState.pageCount > 0) {
                     delay(timeMillis)
-
                     pagerState.animateScrollToPage(pagerState.currentPage + 1)
                 }
             }
+
             HorizontalPager(
-                count = Int.MAX_VALUE,
+                count = MAX_VALUE,
                 state = pagerState,
                 modifier = Modifier
                     .pointerInput(pagerState.currentPage) {
@@ -120,18 +122,20 @@ fun Banner(
                         }
                     }
                     .clickable {
-                        val page = (pagerState.currentPage - startIndex).floorMod(pageCount)
+                        val page = getRealCurIndex(pagerState.currentPage, startIndex, pageCount)
                         with(list[page]) {
                             onClick.invoke(linkUrl, title)
                         }
                     }
                     .fillMaxWidth()
+                    .height(220.dp)
             ) { index ->
-
-                val page = (index - startIndex).floorMod(pageCount)
+                val page = getRealCurIndex(index, startIndex, pageCount)
                 Image(
-                    painter = rememberImagePainter(data = list[page].linkUrl),
-                    modifier = Modifier.fillMaxWidth(),
+                    painter = rememberImagePainter(data = list[page].imageUrl),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(220.dp),
                     contentScale = ContentScale.Crop,
                     contentDescription = null
                 )
@@ -153,9 +157,12 @@ fun Banner(
                         var size by remember { mutableStateOf(5.dp) }
                         size = if (pagerState.currentPage == i) 7.dp else 5.dp
 
+
+                        val curIndex =
+                            getRealCurIndex(pagerState.currentPage, startIndex, pageCount)
                         //颜色
                         val color =
-                            if (pagerState.currentPage == i) MaterialTheme.colors.primary else Color.Gray
+                            if (curIndex == i) MaterialTheme.colors.primary else Color.Gray
 
                         Box(
                             modifier = Modifier
@@ -186,6 +193,10 @@ fun Banner(
 
     }
 
+}
+
+private fun getRealCurIndex(curIndex: Int, startIndex: Int, pageCount: Int): Int {
+    return (curIndex - startIndex).floorMod(pageCount)
 }
 
 private fun Int.floorMod(other: Int): Int = when (other) {

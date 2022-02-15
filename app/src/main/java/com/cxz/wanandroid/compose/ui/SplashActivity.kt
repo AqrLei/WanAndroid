@@ -1,4 +1,4 @@
-package com.cxz.wanandroid.ui.activity
+package com.cxz.wanandroid.compose.ui
 
 import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.animateFloat
@@ -29,15 +29,18 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import coil.annotation.ExperimentalCoilApi
 import com.cxz.wanandroid.R
-import com.cxz.wanandroid.compose.ui.BaseComposeActivity
 import com.cxz.wanandroid.compose.ui.page.home.WanAndroidHome
 import com.cxz.wanandroid.compose.ui.theme.ColorPrimary
 import com.cxz.wanandroid.compose.data.model.ArticleModel
+import com.google.accompanist.pager.ExperimentalPagerApi
 import kotlinx.coroutines.delay
 
 class SplashActivity : BaseComposeActivity() {
 
+
+    @OptIn(ExperimentalPagerApi::class, coil.annotation.ExperimentalCoilApi::class)
     @Composable
     override fun ComposeContentView() {
         MainScreen(onArticleItemClicked = {})
@@ -46,6 +49,8 @@ class SplashActivity : BaseComposeActivity() {
 
 typealias OnArticleItemClicked = (article: ArticleModel) -> Unit
 
+@ExperimentalCoilApi
+@ExperimentalPagerApi
 @Composable
 fun MainScreen(onArticleItemClicked: OnArticleItemClicked) {
     Surface(color = ColorPrimary) {
@@ -112,6 +117,8 @@ fun LandingScreen(modifier: Modifier = Modifier, onSplash: () -> Unit, onComplet
     }
 }
 
+@ExperimentalCoilApi
+@ExperimentalPagerApi
 @Composable
 private fun MainContent(
     modifier: Modifier = Modifier,

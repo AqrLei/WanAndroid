@@ -13,6 +13,7 @@ import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.io.File
 
@@ -61,8 +62,8 @@ class RetrofitFactory private constructor() {
         Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(okHttpClient)
-//            .addConverterFactory(GsonConverterFactory.create(gson))
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
+//            .addConverterFactory(MoshiConverterFactory.create())
             .build()
     }
 
