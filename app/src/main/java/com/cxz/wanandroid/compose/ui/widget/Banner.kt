@@ -72,7 +72,7 @@ fun Banner(
         modifier = Modifier
             .background(MaterialTheme.colors.background)
             .fillMaxWidth()
-            .height(220.dp)
+            .height(200.dp)
     ) {
         list?.takeIf { it.isNotEmpty() }?.let { bannerList ->
             val pageCount = bannerList.size
@@ -128,14 +128,14 @@ fun Banner(
                         }
                     }
                     .fillMaxWidth()
-                    .height(220.dp)
+                    .height(200.dp)
             ) { index ->
                 val page = getRealCurIndex(index, startIndex, pageCount)
                 Image(
                     painter = rememberImagePainter(data = list[page].imageUrl),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(220.dp),
+                        .height(200.dp),
                     contentScale = ContentScale.Crop,
                     contentDescription = null
                 )

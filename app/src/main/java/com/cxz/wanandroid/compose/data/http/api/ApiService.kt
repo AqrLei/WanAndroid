@@ -1,6 +1,8 @@
 package com.cxz.wanandroid.compose.data.http.api
 
 import com.cxz.wanandroid.compose.data.bean.BaseBean
+import com.cxz.wanandroid.compose.data.bean.PageList
+import com.cxz.wanandroid.compose.data.bean.home.Article
 import com.cxz.wanandroid.compose.data.bean.home.BannerBean
 import retrofit2.http.Field
 import retrofit2.http.FieldMap
@@ -22,11 +24,20 @@ interface ApiService {
     @GET("banner/json")
     suspend fun getBanners(): BaseBean<List<BannerBean>>
 
-    suspend fun getTopArticles(): BaseBean<Any>
+    /**
+     * 获取首页置顶文章列表
+     * http://www.wanandroid.com/article/top/json
+     */
+    @GET("article/top/json")
+    suspend fun getTopArticles(): BaseBean<List<Article>>
 
-    suspend fun getArticles(
-        @Path("pageNum") pageNum: Int
-    ): BaseBean<Any>
+    /**
+     * 获取文章列表
+     * http://www.wanandroid.com/article/list/0/json
+     * @param pageNum
+     */
+    @GET("article/list/{pageNum}/json")
+    suspend fun getArticles(@Path("pageNum") pageNum: Int): BaseBean<PageList<Article>>
 
     suspend fun getKnowledgeTree(): BaseBean<Any>
 

@@ -119,4 +119,8 @@ dependencies {
     implementation kotlinDeps.kotlin_stdlib
 
     implementation project(':lib_multiple_view')
+
+    implementation "androidx.paging:paging-common-ktx:3.1.0"
+    implementation "androidx.paging:paging-runtime-ktx:3.1.0"
+    implementation "androidx.paging:paging-compose:1.0.0-alpha14"
 }
