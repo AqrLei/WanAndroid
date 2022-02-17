@@ -28,7 +28,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.cxz.wanandroid.R
-import com.cxz.wanandroid.compose.ui.theme.ColorPrimary
 
 /**
  * created by AqrLei on 2022/2/11
@@ -43,7 +42,7 @@ fun WanAndroidDrawer(modifier: Modifier = Modifier) {
     ) {
         ConstraintLayout(
             modifier = Modifier
-                .background(ColorPrimary)
+                .background(MaterialTheme.colors.primary)
                 .padding(start = 16.dp, top = 36.dp, end = 16.dp, bottom = 10.dp)
                 .fillMaxWidth()
         ) {

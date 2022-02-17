@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -32,7 +33,6 @@ import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import com.cxz.wanandroid.R
 import com.cxz.wanandroid.compose.ui.page.home.WanAndroidHome
-import com.cxz.wanandroid.compose.ui.theme.ColorPrimary
 import com.cxz.wanandroid.compose.data.model.ArticleModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import kotlinx.coroutines.delay
@@ -53,7 +53,7 @@ typealias OnArticleItemClicked = (article: ArticleModel) -> Unit
 @ExperimentalPagerApi
 @Composable
 fun MainScreen(onArticleItemClicked: OnArticleItemClicked) {
-    Surface(color = ColorPrimary) {
+    Surface(color = MaterialTheme.colors.primary) {
         val transitionState = remember { MutableTransitionState(SplashState.Shown) }
         val transition = updateTransition(targetState = transitionState, label = "splashTransition")
 
@@ -81,7 +81,7 @@ fun MainScreen(onArticleItemClicked: OnArticleItemClicked) {
         Box {
             LandingScreen(
                 modifier = Modifier
-                    .background(alpha = splashAlpha, brush = SolidColor(ColorPrimary))
+                    .background(alpha = splashAlpha, brush = SolidColor(MaterialTheme.colors.primary))
                     .alpha(splashAlpha),
                 onSplash = { transitionState.targetState = SplashState.OnSplashed },
                 onComplete = { transitionState.targetState = SplashState.Completed }

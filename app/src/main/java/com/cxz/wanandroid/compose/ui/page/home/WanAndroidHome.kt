@@ -13,6 +13,7 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.FabPosition
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
@@ -33,7 +34,6 @@ import androidx.navigation.compose.rememberNavController
 import coil.annotation.ExperimentalCoilApi
 import com.cxz.wanandroid.R
 import com.cxz.wanandroid.compose.ui.page.home.recommend.RecommendPage
-import com.cxz.wanandroid.compose.ui.theme.ColorPrimary
 import com.cxz.wanandroid.compose.ui.OnArticleItemClicked
 import com.google.accompanist.insets.navigationBarsHeight
 import com.google.accompanist.insets.statusBarsPadding
@@ -120,7 +120,7 @@ fun WanAndroidHomeContent(
     Scaffold(
         modifier = modifier,
         bottomBar = {
-            Column(Modifier.background(ColorPrimary)) {
+            Column(Modifier.background(MaterialTheme.colors.primary)) {
                 BottomNavigation {
                     val navBackStackEntry by navController.currentBackStackEntryAsState()
                     val currentDestination = navBackStackEntry?.destination
